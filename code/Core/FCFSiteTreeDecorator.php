@@ -17,7 +17,7 @@ class FirstClickFree {
 		),
 		$customAgents = array();
 
-	static remove_bot($name) {
+	static function remove_bot($name) {
 		if (is_array($name)) {
 			foreach ($names as $name) {
 				self::remove_bot($name);
@@ -47,7 +47,7 @@ class FirstClickFree {
 			$hostFromIP = gethostbyaddr($ip);
 			$ipFromHost = gethostbyname($ip);
 			//do the logic
-			foreach (self::get_all_agents() as $botName = $botDetails) {
+			foreach (self::get_all_agents() as $botName => $botDetails) {
 				if (!empty($botDetails['UAs']) && self::checkUA($botDetails['UAs'])) {
 					if (
 						(!empty($botDetails['IPs']) && self::checkIP($botDetails['IPs'],$ip))
@@ -60,7 +60,6 @@ class FirstClickFree {
 				}
 			}
 
-		}
 		//if it is in the session, return true
 		if (Session::get('_FCFisBot')) {
 			return true;
