@@ -19,8 +19,8 @@ class FirstClickFree {
 
 	static function remove_bot($name) {
 		if (is_array($name)) {
-			foreach ($names as $name) {
-				self::remove_bot($name);
+			foreach ($name as $uniqName) {
+				self::remove_bot($uniqName);
 			}
 		}
 		unset(self::$bot_identifying_UA_items[$name]);
@@ -74,7 +74,9 @@ class FirstClickFree {
 				}
 			}
 		}
-		return strpos($_SERVER['HTTP_USER_AGENT'],$match) !== false;
+		else {
+			return strpos($_SERVER['HTTP_USER_AGENT'],$match) !== false;
+		}
 	}
 
 	static function checkIP($allowedIPs,$ip) {
